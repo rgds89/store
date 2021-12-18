@@ -1,5 +1,6 @@
 package com.store.config;
 
+import com.store.entities.Order;
 import com.store.entities.User;
 import com.store.repositories.UserRespository;
 import org.springframework.beans.factory.annotation.Autowired;
