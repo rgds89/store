@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "TB_USER")
 public class User implements Serializable{
@@ -25,6 +27,7 @@ public class User implements Serializable{
 	private String phone;
 	private String password;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
 
