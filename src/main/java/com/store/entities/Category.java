@@ -1,8 +1,7 @@
 package com.store.entities;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,7 +10,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "TB_CATEGORY")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Category implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -22,7 +22,8 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-    @Transient
+    @ManyToMany(mappedBy = "categories")
+    @JsonIgnore
     private Set<Product> products = new HashSet<>();
 
     public Category(Long id, String name) {
