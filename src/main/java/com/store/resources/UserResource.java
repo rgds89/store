@@ -19,8 +19,7 @@ public class UserResource {
 
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
-        List<User> users = userService.findAll();
-        return ResponseEntity.ok().body(users);
+        return ResponseEntity.ok().body(userService.findAll());
     }
 
     @GetMapping(value = "/{id}")
@@ -33,6 +32,12 @@ public class UserResource {
         obj = userService.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).body(obj);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        userService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
