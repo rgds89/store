@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,6 +36,14 @@ public class Order implements Serializable {
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
+
+    public BigDecimal getTotal(){
+        BigDecimal total = BigDecimal.ZERO;
+        for (OrderItem i : items){
+            total = total.add(i.getSubTotal());
+        }
+        return total;
+    }
 
     public Order(Long id, LocalDateTime moment, OrderStatus orderStatus, User client) {
         this.id = id;

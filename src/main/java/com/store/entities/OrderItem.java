@@ -27,6 +27,10 @@ public class OrderItem implements Serializable {
 
     private BigDecimal price;
 
+    public BigDecimal getSubTotal(){
+        return price.multiply(BigDecimal.valueOf(quantity));
+    }
+
     public OrderItem(Order order, Product product, Long quantity, BigDecimal price) {
         id.setOrder(order);
         id.setProduct(product);

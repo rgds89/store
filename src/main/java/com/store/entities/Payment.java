@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class Payment implements Serializable{
 
 	@OneToOne
 	@MapsId
+	@JsonIgnore
 	private Order order;
 
 }
