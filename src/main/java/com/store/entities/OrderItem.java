@@ -1,10 +1,7 @@
 package com.store.entities;
 
 import com.store.entities.pk.OrderItemPk;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -15,7 +12,8 @@ import java.math.BigDecimal;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "TB_ORDER_ITEM")
 public class OrderItem implements Serializable {
@@ -23,7 +21,7 @@ public class OrderItem implements Serializable {
 
     @EqualsAndHashCode.Include
     @EmbeddedId
-    private OrderItemPk id;
+    private OrderItemPk id = new OrderItemPk();
 
     private Long quantity;
 

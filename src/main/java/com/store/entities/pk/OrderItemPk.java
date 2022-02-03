@@ -1,18 +1,17 @@
 package com.store.entities.pk;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.store.entities.Order;
 import com.store.entities.Product;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
@@ -26,5 +25,6 @@ public class OrderItemPk implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "order_id")
+    @JsonIgnore
     private Order order;
 }
