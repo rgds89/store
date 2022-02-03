@@ -1,5 +1,6 @@
 package com.store.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -34,11 +35,22 @@ public class Product implements Serializable {
     )
     Set<Category> categories = new HashSet<>();
 
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
+
     public Product(Long id, String name, String description, BigDecimal price, String imgUrl) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.imgUrl = imgUrl;
+    }
+
+    public  Set<Order> getOrders() {
+        Set<Order> set = new HashSet<>();
+        for(OrderItem o : items){
+            set.add(o.getId().getOrder());
+        }
+        return set;
     }
 }
