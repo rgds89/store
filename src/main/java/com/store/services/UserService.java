@@ -2,6 +2,7 @@ package com.store.services;
 
 import com.store.entities.User;
 import com.store.repositories.UserRespository;
+import com.store.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class UserService {
 
     public User findById(Long id) {
         Optional<User> user = userRespository.findById(id);
-        return user.get();
+        return user.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert (User obj){
@@ -31,7 +32,7 @@ public class UserService {
     }
 
     public User update(Long id, User obj){
-        User user = userRespository.getOne(id);
+        User user = userRespository.getById(id);
         updateData(user, obj);
         return userRespository.saveAndFlush(user);
     }
