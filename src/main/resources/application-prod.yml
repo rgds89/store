@@ -1,0 +1,15 @@
+spring:
+   devtools:
+     add-properties: false
+   datasource:
+      url: ${DATABASE_URL}
+   jpa:
+      properties:
+         hibernate:
+            format_sql: false
+      hibernate:
+         ddl-auto: nome
+      show-sql: false
+jwt:
+   secret: ${JWT_SECRET}
+   expiration: ${JWT_EXPIRATION}

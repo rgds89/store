@@ -3,6 +3,6 @@ server:
 
 spring:
   profiles:
-    active: dev
+    active: ${PROFILE}
   jpa:
     open-in-view: true
