@@ -1,0 +1,20 @@
+spring:
+   devtools:
+     add-properties: false
+   datasource:
+      url: jdbc:postgresql://localhost:5432/store
+      username: postgres
+      password: Timaorgs1910
+   jpa:
+      properties:
+         hibernate:
+            jdbc:
+               lob:
+                  non_contextual_creation: true
+            format_sql: true
+      hibernate:
+         ddl-auto: update
+      show-sql: true
+jwt:
+   secret: MYJWTSECRET
+   expiration: 3600000
